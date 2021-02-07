@@ -1,5 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+
+enum Gender {
+  MALE,
+  FEMALE,
+}
+
+interface Node {
+  name: string;
+  gender: Gender;
+  living: boolean;
+  money: number;
+}
 
 function App() {
   return (
