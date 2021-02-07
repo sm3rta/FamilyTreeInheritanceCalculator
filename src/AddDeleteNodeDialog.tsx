@@ -75,6 +75,7 @@ const AddDeleteNodeDialog = (props: AddDeleteNodeDialogProps) => {
 				{selectedNode && (
 					<Box>
 						<Button
+							disabled={!selectedNode.spouse}
 							className={clsx(classes.button, type === "child" && classes.selectedButton)}
 							onClick={() => {
 								setType("child");

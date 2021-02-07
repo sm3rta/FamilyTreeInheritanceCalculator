@@ -11,6 +11,8 @@ export function addNode(parent: Node | null | undefined, child: Node | null | un
 			child.parent = parent;
 		} else {
 			parent.spouse = child;
+			child.spouse = parent;
+			child.children = parent.children;
 		}
 	}
 }
