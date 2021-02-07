@@ -13,6 +13,7 @@ interface Node {
   money: number;
   spouse: Node;
   children: Node[];
+  parent: Node;
 }
 
 function App() {
