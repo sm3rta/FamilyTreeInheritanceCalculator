@@ -11,9 +11,9 @@ interface Node {
   gender: Gender;
   living: boolean;
   money: number;
-  spouse: Node;
-  children: Node[];
-  parent: Node;
+  spouse?: Node;
+  children?: Node[];
+  parent: Node | null;
 }
 
 function App() {
