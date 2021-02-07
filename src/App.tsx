@@ -1,39 +1,49 @@
-import logo from "./logo.svg";
 import "./App.css";
-
-export enum Gender {
-  MALE,
-  FEMALE,
-}
-
-export interface Node {
-  name: string;
-  gender: Gender;
-  living: boolean;
-  money: number;
-  spouse: Node;
-  children: Node [];
-  parent: Node;
-}
-
+import { SyntheticEvent, useMemo, useState } from "react";
+import Tree from "react-d3-tree";
+import { Box } from "@material-ui/core";
+import grandparent from "./mockData";
+import { Node } from "./types";
+import { inheritanceCalculation } from "./inhertitance-calculations";
+// import transformTreeData from "./transformTreeData";
+import useStyles from "./useStyles";
+import mockData from "./mockData";
 function App() {
+  const classes = useStyles();
+  const [tree, setTree] = useState<Node>(grandparent);
+  console.log("tree", tree);
+  console.log(inheritanceCalculation(mockData));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Tree
+      data={tree}
+      orientation="vertical"
+      translate={{
+        x: 200,
+        y: 200,
+      }}
+      renderCustomNodeElement={(props) => {
+        const { name, spouse, living } = (props.nodeDatum as unknown) as Node;
+
+        return (
+          <g>
+            <circle
+              r="15"
+              className={living ? classes.livingNode : classes.deadNode}
+            ></circle>
+            <g className="rd3t-label">
+              <text className="rd3t-label__title" textAnchor="start" x="40">
+                {name}
+                {spouse && ` married to ${spouse.name}`}
+              </text>
+              <text className="rd3t-label__attributes"></text>
+            </g>
+          </g>
+        );
+      }}
+      pathFunc="step"
+      collapsible={false}
+    />
   );
 }
 
