@@ -22,7 +22,7 @@ const CustomNodeElement = (
 				showDialog();
 			}}
 		>
-			<circle r="16" className={living ? classes.livingNode : classes.deadNode}></circle>
+			<circle r="20" className={living ? classes.livingNode : classes.deadNode}></circle>
 			<g>
 				<text className={classes.text} textAnchor="start" x="30">
 					{name}
