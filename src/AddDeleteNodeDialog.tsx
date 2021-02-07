@@ -128,6 +128,7 @@ const AddDeleteNodeDialog = (props: AddDeleteNodeDialogProps) => {
 						<Select
 							margin="dense"
 							id="gender"
+							name="gender"
 							label="Gender"
 							type="text"
 							fullWidth

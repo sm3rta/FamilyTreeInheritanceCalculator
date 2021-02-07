@@ -27,17 +27,23 @@ const CustomNodeElement = (
 				<text className={classes.text} textAnchor="start" x="30">
 					{name}
 				</text>
-				{spouse && (
-					<text className={classes.text} textAnchor="start" x="30" y="25">
-						{`married to ${spouse.name}`}
-					</text>
-				)}
-				<text className={classes.text} textAnchor="start" x="30" y={spouse ? "50" : "25"}>
+
+				<text className={classes.text} textAnchor="start" x="30" y={25}>
 					{`${gender === Gender.MALE ? "Male" : "Female"}`}
 				</text>
-				<text className={classes.text} textAnchor="start" x="30" y={spouse ? "75" : "50"}>
-					{`${money}`}
+				<text className={classes.text} textAnchor="start" x="30" y={50}>
+					{`${money.toFixed(2)}`}
 				</text>
+				{spouse && (
+					<>
+						<text className={classes.text} textAnchor="start" x="30" y="75">
+							{`married to ${spouse.name}`}
+						</text>
+						<text className={classes.text} textAnchor="start" x="30" y="100">
+							{spouse.money}
+						</text>
+					</>
+				)}
 
 				<text className="rd3t-label__attributes"></text>
 			</g>
