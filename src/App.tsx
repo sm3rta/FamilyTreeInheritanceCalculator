@@ -1,14 +1,16 @@
 import "./App.css";
-import { useMemo, useState } from "react";
+import { SyntheticEvent, useMemo, useState } from "react";
 import Tree from "react-d3-tree";
 import { Box } from "@material-ui/core";
-import mockData from "./mockData";
+import grandparent from "./mockData";
 import { Node } from "./types";
-import transformTreeData from "./transformTreeData";
+// import transformTreeData from "./transformTreeData";
+import useStyles from "./useStyles";
 
 function App() {
-  const [tree, setTree] = useState<Node>(mockData);
-  const data = useMemo(() => transformTreeData(tree), [tree]);
+  const classes = useStyles();
+  const [tree, setTree] = useState<Node>(grandparent);
+  console.log("tree", tree);
   return (
     <Tree
       data={tree}
@@ -17,12 +19,27 @@ function App() {
         x: 200,
         y: 200,
       }}
-      // Statically apply same className(s) to all links
-      // pathClassFunc={() => 'custom-link'}
-      // Want to apply multiple static classes? `Array.join` is your friend :)
-      // pathClassFunc={() => ['custom-link', 'extra-custom-link'].join(' ')}
-      // Dynamically determine which `className` to pass based on the link's properties.
-      // pathClassFunc={getDynamicPathClass}
+      renderCustomNodeElement={(props) => {
+        const { name, spouse, living } = (props.nodeDatum as unknown) as Node;
+
+        return (
+          <g>
+            <circle
+              r="15"
+              className={living ? classes.livingNode : classes.deadNode}
+            ></circle>
+            <g className="rd3t-label">
+              <text className="rd3t-label__title" textAnchor="start" x="40">
+                {name}
+                {spouse && ` married to ${spouse.name}`}
+              </text>
+              <text className="rd3t-label__attributes"></text>
+            </g>
+          </g>
+        );
+      }}
+      pathFunc="step"
+      collapsible={false}
     />
   );
 }
