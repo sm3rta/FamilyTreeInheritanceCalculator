@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
 	livingNode: {
-		fill: "lavender",
+		fill: "cyan",
 	},
 	deadNode: {
 		fill: "black",
@@ -26,7 +26,8 @@ const useStyles = makeStyles((theme) => ({
 	text: {
 		strokeWidth: 0,
 		fill: "black",
-		fontFamily: "monospace",
+		fontFamily:
+			"-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
 	},
 }));
 

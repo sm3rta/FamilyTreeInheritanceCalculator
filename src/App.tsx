@@ -1,11 +1,19 @@
 import "./App.css";
-import { useState } from "react";
+import React, { useState } from "react";
 import Tree from "react-d3-tree";
 import grandparent from "./mockData";
 import { Node } from "./types";
 import AddDeleteNodeDialog from "./AddDeleteNodeDialog";
 import CustomNodeElement from "./CustomNodeElement";
+import { makeStyles } from "@material-ui/core";
+import Header from "./Header";
 import { inheritanceCalculation } from "./inhertitance-calculations";
+
+const useStyles = makeStyles({
+	n: {
+		fill: "red",
+	},
+});
 
 function App() {
 	const [selectedNode, setSelectedNode] = useState<Node | null>(null);
@@ -14,8 +22,11 @@ function App() {
 	const hideDialog = () => setIsDialogOpen(false);
 	// console.log(inheritanceCalculation(grandparent));
 	const [root, setRoot] = useState<Node | null>(null);
+	const classes = useStyles();
+
 	return (
 		<>
+			<Header />
 			<AddDeleteNodeDialog
 				isDialogOpen={isDialogOpen || !root}
 				hideDialog={hideDialog}
@@ -26,6 +37,7 @@ function App() {
 			{root && (
 				<Tree
 					// data={root}
+					rootNodeClassName={classes.n}
 					data={grandparent}
 					orientation="vertical"
 					translate={{
@@ -35,7 +47,7 @@ function App() {
 					renderCustomNodeElement={(props) => (
 						<CustomNodeElement {...props} setSelectedNode={setSelectedNode} showDialog={showDialog} />
 					)}
-					pathFunc="step"
+					pathFunc="diagonal"
 					collapsible={false}
 					depthFactor={250}
 				/>
