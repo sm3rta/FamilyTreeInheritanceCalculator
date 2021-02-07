@@ -2,5 +2,14 @@ import React from "react";
 import { Node } from "./App";
 
 export function AddNode(props: Node) {
-    console.log(props.name);
+    let newChild = {
+        name: props.name,
+        gender: props.gender,
+        living: props.living,
+        money: props.money,
+        spouse: props.spouse,
+        children: props.children,
+        parent: props.parent,
+    };
+    return newChild;
 }
