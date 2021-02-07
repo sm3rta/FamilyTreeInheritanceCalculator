@@ -1,9 +1,6 @@
-.App {
-  text-align: center;
-}
-
 #root,
 body,
 html {
   height: 100%;
+  overflow: hidden;
 }
