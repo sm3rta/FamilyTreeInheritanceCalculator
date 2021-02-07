@@ -23,6 +23,11 @@ const useStyles = makeStyles((theme) => ({
 	spaceBetween: {
 		justifyContent: "space-between",
 	},
+	text: {
+		strokeWidth: 0,
+		fill: "black",
+		fontFamily: "monospace",
+	},
 }));
 
 export default useStyles;

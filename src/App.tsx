@@ -6,7 +6,6 @@ import { Node } from "./types";
 import AddDeleteNodeDialog from "./AddDeleteNodeDialog";
 import CustomNodeElement from "./CustomNodeElement";
 import { inheritanceCalculation } from "./inhertitance-calculations";
-// import grandparent from './mockData'
 
 function App() {
 	const [selectedNode, setSelectedNode] = useState<Node | null>(null);
@@ -26,8 +25,8 @@ function App() {
 			/>
 			{root && (
 				<Tree
-					data={root}
-					// data={grandparent}
+					// data={root}
+					data={grandparent}
 					orientation="vertical"
 					translate={{
 						x: document.body.clientWidth / 2,
