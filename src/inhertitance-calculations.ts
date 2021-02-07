@@ -141,4 +141,5 @@ export const inheritanceCalculation = (node: Node) => {
 		}
 	}
 	node.money = 0;
+	node.living = false;
 };
