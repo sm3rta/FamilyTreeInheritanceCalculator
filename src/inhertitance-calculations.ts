@@ -26,10 +26,7 @@ export const inheritanceCalculation = (node: Node) => {
 			console.log("person has spouse and children");
 			if (node.parent) {
 				if (node.parent.spouse) {
-					console.log("Enyered");
 					let fatherShare = node.parent.spouse?.money;
-					console.log(fatherShare);
-					console.log(node.parent.spouse?.money);
 					let motherShare = node.parent.money;
 					if (node.parent.gender === Gender.MALE) {
 						fatherShare = node.parent.money;
@@ -42,9 +39,6 @@ export const inheritanceCalculation = (node: Node) => {
 						spouseShare += (1 / 8) * node.money;
 					}
 					fatherShare += (1 / 6) * node.money;
-					console.log(fatherShare);
-					console.log(node.parent.money);
-					console.log(node.parent.spouse.money);
 
 					if (node.parent.spouse) {
 						motherShare += (1 / 6) * node.money;
@@ -66,7 +60,6 @@ export const inheritanceCalculation = (node: Node) => {
 					} else if (node.children.map((child) => child.gender === Gender.MALE).length) {
 						const maleCount = node.children.filter((child) => child.gender === Gender.MALE).length;
 						let noOfShares: number = maleCount * 2 + (node.children.length - maleCount);
-						console.log(noOfShares);
 						node.children.map((child) => {
 							if (child.gender === Gender.MALE) {
 								child.money += ((node.money - (2 / 6) * (1 / 8) * node.money) / noOfShares) * 2;
@@ -112,7 +105,6 @@ export const inheritanceCalculation = (node: Node) => {
 						const maleCount = node.children.map((child) => child.gender === Gender.MALE).length;
 						let noOfShares: number = maleCount * 2 + (node.children.length - maleCount);
 						parentShare += node.money - (((node.money * 2) / 6) * 2 * (1 / 8)) / 3;
-						console.log(noOfShares);
 						node.children.map((child) => {
 							if (child.gender === Gender.MALE) {
 								child.money += (node.money - ((2 / 6) * (1 / 8) * node.money) / noOfShares) * 2;
