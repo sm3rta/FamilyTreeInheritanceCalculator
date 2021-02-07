@@ -47,7 +47,7 @@ export const inheritanceCalculation = (node: Node) => {
 					}
 					if (node.children.length === 1 && node.children[0].gender === Gender.FEMALE) {
 						node.children[0].money += 0.5 * node.money;
-						fatherShare += node.money - ((node.money * 2) / 6) * 0.5 * (1 / 8);
+						fatherShare += node.money - (node.money* (2/6 + 0.8 + 1/8));
 						console.log("if person is married and has one daughter");
 					} else if (
 						node.children.length > 1 &&
@@ -55,16 +55,16 @@ export const inheritanceCalculation = (node: Node) => {
 					) {
 						const childrenNumber = node.children.length;
 						node.children.map((child) => (child.money += ((2 / 3) * node.money) / childrenNumber));
-						fatherShare += node.money - (((node.money * 2) / 6) * 2 * (1 / 8)) / 3;
+						fatherShare += node.money - node.money * (2/6 + 2/3 + 1/8);
 						console.log("if person is married and has more than one daughter");
 					} else if (node.children.map((child) => child.gender === Gender.MALE).length) {
 						const maleCount = node.children.filter((child) => child.gender === Gender.MALE).length;
 						let noOfShares: number = maleCount * 2 + (node.children.length - maleCount);
 						node.children.map((child) => {
 							if (child.gender === Gender.MALE) {
-								child.money += ((node.money - ((2 / 6) + (1 / 8))* node.money) / noOfShares) * 2;
+								child.money += (node.money - (node.money * (2/6 + 1/8)) / noOfShares) * 2;
 							} else {
-								child.money += (node.money - ((2 / 6) + (1 / 8)) * node.money) / noOfShares;
+								child.money += node.money - (node.money * (2/6 + 1/8) / noOfShares);
 							}
 							console.log(
 								`every child takes ${child.money} and his gender is ${child.gender} cause MALE takes twice the share of FEMALE`,
@@ -91,7 +91,7 @@ export const inheritanceCalculation = (node: Node) => {
 					}
 					if (node.children.length === 1 && node.children[0].gender === Gender.FEMALE) {
 						node.children[0].money += 0.5 * node.money;
-						parentShare += node.money - ((node.money * 1) / 6) * 0.5 * (1 / 8);
+						parentShare += node.money - (node.money  * (1/6 + 0.5 + 1/8));
 						console.log("if person is married and has one daughter");
 					} else if (
 						node.children.length > 1 &&
@@ -99,19 +99,19 @@ export const inheritanceCalculation = (node: Node) => {
 					) {
 						const childrenNumber = node.children.length;
 						node.children.map((child) => (child.money += ((2 / 3) * node.money) / childrenNumber));
-						parentShare += node.money - ((((node.money * 1) / 6) * 2) / 3) * (1 / 8);
+						parentShare += node.money - (node.money * (1/6 * 2/3 * 1/8));
 						console.log("if person is married and has more than one daughter");
 					} else if (node.children.map((child) => child.gender === Gender.MALE).length) {
 						const maleCount = node.children.map((child) => child.gender === Gender.MALE).length;
 						let noOfShares: number = maleCount * 2 + (node.children.length - maleCount);
-						parentShare += node.money - (((node.money * 2) / 6) * 2 * (1 / 8)) / 3;
+						parentShare += node.money - (node.money * (2/6 + 2/3 + 1/8));
 						node.children.map((child) => {
 							if (child.gender === Gender.MALE) {
-								child.money += (node.money - ((2 / 6) * (1 / 8) * node.money) / noOfShares) * 2;
+								child.money += (node.money - (node.money * (2/6 + 1/8)) / noOfShares) * 2;
 							} else {
-								child.money += node.money - ((2 / 6) * (1 / 8) * node.money) / noOfShares;
+								child.money += node.money - (node.money * (2/6 + 1/8)) / noOfShares;
 							}
-							parentShare += node.money - ((((node.money * 1) / 6) * 2) / 3) * (1 / 8);
+							parentShare += node.money - (node.money * (1/6 + 2/3 + 1/8));
 							console.log(
 								`every child takes ${child.money} and his gender is ${child.gender} cause MALE takes twice the share of FEMALE`,
 							);
@@ -129,11 +129,11 @@ export const inheritanceCalculation = (node: Node) => {
 				}
 				if (node.spouse.gender === Gender.MALE) {
 					node.spouse.money += 0.5 * node.money;
-					node.parent.money += (1 / 6) * node.money + (node.money - (2 / 6) * 0.5 * node.money);
+					node.parent.money += (1 / 6) * node.money - (node.money * (2/6 + 0.5));
 					console.log("person has parents and spouse and has not children");
 				} else {
 					node.spouse.money += 0.25 * node.money;
-					node.parent.money += (1 / 6) * node.money + (node.money - (2 / 6) * 0.25 * node.money);
+					node.parent.money += (1 / 6) * node.money - (node.money * (2/6 + 0.25));
 					console.log("person has parents and spouse and has not children");
 				}
 			}
