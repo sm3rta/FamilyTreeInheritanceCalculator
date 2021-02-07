@@ -1,5 +1,5 @@
 import { RawNodeDatum } from "react-d3-tree/lib/types/common";
-import { Gender, Node } from "./types";
+import { Node } from "./types";
 
 const transformTreeData = (treeRootNode: Node) => {
   const { name, children, ...rest } = treeRootNode;

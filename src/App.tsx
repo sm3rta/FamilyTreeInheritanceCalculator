@@ -1,49 +1,43 @@
 import "./App.css";
-import { SyntheticEvent, useMemo, useState } from "react";
+import { useState } from "react";
 import Tree from "react-d3-tree";
-import { Box } from "@material-ui/core";
 import grandparent from "./mockData";
 import { Node } from "./types";
-import { inheritanceCalculation } from "./inhertitance-calculations";
-// import transformTreeData from "./transformTreeData";
-import useStyles from "./useStyles";
-import mockData from "./mockData";
+import AddDeleteNodeDialog from "./AddDeleteNodeDialog";
+import CustomNodeElement from "./CustomNodeElement";
+
 function App() {
-  const classes = useStyles();
-  const [tree, setTree] = useState<Node>(grandparent);
-  console.log("tree", tree);
-  console.log(inheritanceCalculation(mockData));
+  const [selectedNode, setSelectedNode] = useState<Node | null>(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const showDialog = () => setIsDialogOpen(true);
+  const hideDialog = () => setIsDialogOpen(false);
 
   return (
-    <Tree
-      data={tree}
-      orientation="vertical"
-      translate={{
-        x: 200,
-        y: 200,
-      }}
-      renderCustomNodeElement={(props) => {
-        const { name, spouse, living } = (props.nodeDatum as unknown) as Node;
-
-        return (
-          <g>
-            <circle
-              r="15"
-              className={living ? classes.livingNode : classes.deadNode}
-            ></circle>
-            <g className="rd3t-label">
-              <text className="rd3t-label__title" textAnchor="start" x="40">
-                {name}
-                {spouse && ` married to ${spouse.name}`}
-              </text>
-              <text className="rd3t-label__attributes"></text>
-            </g>
-          </g>
-        );
-      }}
-      pathFunc="step"
-      collapsible={false}
-    />
+    <>
+      <AddDeleteNodeDialog
+        isDialogOpen={isDialogOpen}
+        hideDialog={hideDialog}
+        selectedNode={selectedNode}
+      />
+      <Tree
+        data={grandparent}
+        orientation="vertical"
+        translate={{
+          x: document.body.clientWidth / 2,
+          y: document.body.clientHeight / 5,
+        }}
+        renderCustomNodeElement={(props) => (
+          <CustomNodeElement
+            {...props}
+            setSelectedNode={setSelectedNode}
+            showDialog={showDialog}
+          />
+        )}
+        pathFunc="step"
+        collapsible={false}
+        depthFactor={250}
+      />
+    </>
   );
 }
 

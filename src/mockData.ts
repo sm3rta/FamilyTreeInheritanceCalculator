@@ -36,6 +36,15 @@ grandparent.children = [
     living: true,
     money: 500000,
     parent: grandparent,
+    children: [
+      {
+        name: "Ahmad",
+        gender: Gender.MALE,
+        living: true,
+        money: 500000,
+        parent: null,
+      },
+    ],
   },
   {
     name: "Ahmad",
