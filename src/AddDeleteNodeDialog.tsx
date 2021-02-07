@@ -8,6 +8,7 @@ import * as yup from "yup";
 import { useFormik } from "formik";
 import clsx from "clsx";
 import { DeleteNode, AddNode } from "./functions";
+import { inheritanceCalculation } from './inhertitance-calculations';
 
 interface AddDeleteNodeDialogProps {
     isDialogOpen: boolean;
@@ -147,8 +148,8 @@ const AddDeleteNodeDialog = (props: AddDeleteNodeDialogProps) => {
                     Delete
                 </Button>
                 <Box>
-                    <Button className={classes.button}>Calculate Inheritance</Button>
-                    {selectedNode?.spouse && <Button className={classes.button}>Calculate Inheritance for spouse</Button>}
+                    <Button className={classes.button} onClick= {()=> selectedNode &&  inheritanceCalculation(selectedNode)}>Calculate Inheritance</Button>
+                    {selectedNode?.spouse && <Button className={classes.button} onClick= {()=> selectedNode &&  inheritanceCalculation(selectedNode)}>Calculate Inheritance for spouse</Button>}
                 </Box>
             </DialogContent>
         </Dialog>
