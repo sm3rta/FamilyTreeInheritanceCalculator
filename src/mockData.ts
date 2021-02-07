@@ -1,6 +1,6 @@
 import { Gender, Node } from "./types";
 
-const mockData: Node = {
+const grandparent: Node = {
   name: "John Doe",
   gender: Gender.MALE,
   living: true,
@@ -15,43 +15,50 @@ const mockData: Node = {
   },
 };
 
-mockData.children = [
+grandparent.children = [
   {
     name: "Emily",
-    gender: Gender.MALE,
+    gender: Gender.FEMALE,
     living: true,
     money: 500000,
-    parent: mockData,
+    parent: grandparent,
+    spouse: {
+      name: "Peter",
+      gender: Gender.MALE,
+      living: true,
+      money: 500000,
+      parent: null,
+    },
   },
   {
     name: "Sophie",
-    gender: Gender.MALE,
+    gender: Gender.FEMALE,
     living: true,
     money: 500000,
-    parent: mockData,
+    parent: grandparent,
   },
   {
     name: "Ahmad",
     gender: Gender.MALE,
     living: true,
     money: 500000,
-    parent: mockData,
+    parent: grandparent,
   },
 ];
 
-const emily = mockData.children[0];
+const emily = grandparent.children[0];
 emily.children = [
   {
     name: "Emily",
-    gender: Gender.MALE,
+    gender: Gender.FEMALE,
     living: true,
     money: 500000,
     parent: emily,
   },
   {
     name: "Sophie",
-    gender: Gender.MALE,
-    living: true,
+    gender: Gender.FEMALE,
+    living: false,
     money: 500000,
     parent: emily,
   },
@@ -64,4 +71,4 @@ emily.children = [
   },
 ];
 
-export default mockData;
+export default grandparent;
