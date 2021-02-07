@@ -19,7 +19,7 @@ import useStyles from "./useStyles";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import clsx from "clsx";
-import { DeleteNode, AddNode } from "./functions";
+import { deleteNode, addNode } from "./functions";
 
 interface AddDeleteNodeDialogProps {
 	isDialogOpen: boolean;
@@ -51,7 +51,7 @@ const AddDeleteNodeDialog = (props: AddDeleteNodeDialogProps) => {
 		validationSchema: validationSchema,
 		onSubmit: () => {
 			if (type === "child" || type === "spouse") {
-				AddNode(
+				addNode(
 					selectedNode,
 					{
 						...formik.values,
@@ -163,13 +163,13 @@ const AddDeleteNodeDialog = (props: AddDeleteNodeDialogProps) => {
 							className={classes.button}
 							color="secondary"
 							onClick={() => {
-								if (selectedNode.parent) DeleteNode(selectedNode);
+								if (selectedNode.parent) deleteNode(selectedNode);
 								else {
 									setRoot(null);
 									setSelectedNode(null);
 								}
 							}}
-							// onClick={DeleteNode(selectedNode?.parent, selectedNode?.name)}>
+							// onClick={deleteNode(selectedNode?.parent, selectedNode?.name)}>
 							// onClick={console.log("ho")}
 						>
 							Delete

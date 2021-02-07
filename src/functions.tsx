@@ -1,6 +1,6 @@
 import { Node } from "./types";
 
-export function AddNode(parent: Node | null | undefined, child: Node | null | undefined, type: string) {
+export function addNode(parent: Node | null | undefined, child: Node | null | undefined, type: string) {
 	if (parent && child) {
 		if (type === "child") {
 			if (parent.children) {
@@ -15,7 +15,7 @@ export function AddNode(parent: Node | null | undefined, child: Node | null | un
 	}
 }
 
-export function DeleteNode(node?: Node | null) {
+export function deleteNode(node?: Node | null) {
 	if (node?.parent?.children) {
 		const index = node?.parent.children.findIndex((child) => child === node);
 		node?.parent.children.splice(index, 1);
