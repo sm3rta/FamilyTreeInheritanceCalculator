@@ -7,10 +7,7 @@ import AddDeleteNodeDialog from "./AddDeleteNodeDialog";
 import CustomNodeElement from "./CustomNodeElement";
 
 function App() {
-  const [tree] = useState<Node>(grandparent);
   const [selectedNode, setSelectedNode] = useState<Node | null>(null);
-  console.log("tree", tree);
-
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const showDialog = () => setIsDialogOpen(true);
   const hideDialog = () => setIsDialogOpen(false);
@@ -23,7 +20,7 @@ function App() {
         selectedNode={selectedNode}
       />
       <Tree
-        data={tree}
+        data={grandparent}
         orientation="vertical"
         translate={{
           x: document.body.clientWidth / 2,
@@ -38,11 +35,7 @@ function App() {
         )}
         pathFunc="step"
         collapsible={false}
-        enableLegacyTransitions
-        // depthFactor={250}
-        separation={{
-          siblings: 1.25,
-        }}
+        depthFactor={250}
       />
     </>
   );
