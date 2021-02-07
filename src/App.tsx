@@ -21,7 +21,7 @@ function App() {
         <>
             <AddDeleteNodeDialog isDialogOpen={isDialogOpen} hideDialog={hideDialog} selectedNode={selectedNode} />
             <Tree
-                data={tree}
+                data={grandparent}
                 orientation="vertical"
                 translate={{
                     x: 1000,

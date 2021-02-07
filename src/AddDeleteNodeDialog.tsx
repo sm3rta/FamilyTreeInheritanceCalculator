@@ -7,7 +7,7 @@ import useStyles from "./useStyles";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import clsx from "clsx";
-import { DeleteNode } from "./functions";
+import { DeleteNode, AddNode } from "./functions";
 
 interface AddDeleteNodeDialogProps {
     isDialogOpen: boolean;
@@ -55,6 +55,7 @@ const AddDeleteNodeDialog = (props: AddDeleteNodeDialogProps) => {
                         onClick={() => {
                             setType("child");
                             setAdd(true);
+                            AddNode(selectedNode, { ...formik.values, parent: selectedNode });
                         }}>
                         Add Child
                     </Button>
