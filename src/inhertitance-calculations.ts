@@ -123,30 +123,28 @@ export const inheritanceCalculation = (node: Node) => {
 								`every child takes ${child.money} and his gender is ${child.gender} cause MALE takes twice the share of FEMALE`,
 							);
 						});
-
 						node.parent.money = parentShare;
 					}
 				}
 			}
-			// if person is married and has children
 			console.log("if person is married and has children");
-			// if person is married and has not children
 		} else if (node.spouse && node.children?.length === 0) {
 			if (node.parent) {
 				if (node.parent.spouse) {
 					node.parent.spouse.money += (1 / 6) * node.money;
+                    console.log("person has parents(father and mother) and has not children")
 				}
-				// if person is female
 				if (node.spouse.gender === Gender.MALE) {
 					node.spouse.money += 0.5 * node.money;
 					node.parent.money += (1 / 6) * node.money + (node.money - (2 / 6) * 0.5 * node.money);
+                    console.log("person has parents and spouse and has not children")
 				} else {
-					// if person is male
 					node.spouse.money += 0.25 * node.money;
 					node.parent.money += (1 / 6) * node.money + (node.money - (2 / 6) * 0.25 * node.money);
+                    console.log("person has parents and spouse and has not children")
 				}
 			}
 		}
 	}
-	return node;
+    node.money = 0;
 };
