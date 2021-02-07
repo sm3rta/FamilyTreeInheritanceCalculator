@@ -62,9 +62,9 @@ export const inheritanceCalculation = (node: Node) => {
 						let noOfShares: number = maleCount * 2 + (node.children.length - maleCount);
 						node.children.map((child) => {
 							if (child.gender === Gender.MALE) {
-								child.money += ((node.money - (2 / 6) * (1 / 8) * node.money) / noOfShares) * 2;
+								child.money += ((node.money - ((2 / 6) + (1 / 8))* node.money) / noOfShares) * 2;
 							} else {
-								child.money += (node.money - (2 / 6) * (1 / 8) * node.money) / noOfShares;
+								child.money += (node.money - ((2 / 6) + (1 / 8)) * node.money) / noOfShares;
 							}
 							console.log(
 								`every child takes ${child.money} and his gender is ${child.gender} cause MALE takes twice the share of FEMALE`,
