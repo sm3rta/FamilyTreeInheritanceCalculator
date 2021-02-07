@@ -67,13 +67,13 @@ test("inheritance 1", () => {
 		console.log(node.name, node.money);
 	});
 
-	// expect(parent.living).toEqual(false);
-	// expect(parent.money).toEqual(0);
-	expect(Samir.money).toEqual((1 / 6) * money);
-	expect(Nagwa.money).toEqual((1 / 6) * money);
-	expect(Rasha.money).toEqual((1 / 8) * money);
+	expect(Samy.living).toEqual(false);
+	expect(Samy.money).toEqual(0);
+	expect(Samir.money.toFixed(2)).toEqual(((1 / 6) * money).toFixed(2));
+	expect(Nagwa.money.toFixed(2)).toEqual(((1 / 6) * money).toFixed(2));
+	expect(Rasha.money.toFixed(2)).toEqual(((1 / 8) * money).toFixed(2));
 	const rest = money * (1 - (1 / 8 + 1 / 6 + 1 / 6));
 	console.log("rest", rest);
-	expect(Noha.money).toEqual((1 / 3) * rest);
-	expect(Hossam.money).toEqual((2 / 3) * rest);
+	expect(Noha.money.toFixed(2)).toEqual(((1 / 3) * rest).toFixed(2));
+	expect(Hossam.money.toFixed(2)).toEqual(((2 / 3) * rest).toFixed(2));
 });
