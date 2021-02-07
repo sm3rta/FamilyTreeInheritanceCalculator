@@ -1,18 +1,19 @@
 import logo from "./logo.svg";
 import "./App.css";
 
-enum Gender {
+export enum Gender {
   MALE,
   FEMALE,
 }
 
-interface Node {
+export interface Node {
   name: string;
   gender: Gender;
   living: boolean;
   money: number;
   spouse: Node;
-  children: Node[];
+  children: Node [];
+  parent: Node;
 }
 
 function App() {
