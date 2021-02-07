@@ -3,12 +3,13 @@ import { Node, Gender } from "./types";
 export const inheritanceCalculation = (node: Node) => {
   // if person is not married
   if (!node.spouse) {
-      // if 
+      // if person is not married and has parents
     if (node.parent) {
       node.parent.money += (2 / 3) * node.money;
       node.parent.spouse.money += (1 / 3) * node.money;
       console.log("the person not married and has parents");
     }
+      // if person is not married and has no parents
     console.log("the person not married and has no parents");
   } else {
     // if person is married and has children
@@ -66,8 +67,8 @@ export const inheritanceCalculation = (node: Node) => {
         }
       } else {
         if (
-          node.parent.children.length > 1 &&
-          node.parent.children.map((child) => child.gender === Gender.MALE)
+          node.parent?.children.length > 1 &&
+          node.parent?.children.map((child) => child.gender === Gender.MALE)
             .length
         ) {
           const noOfBrothers = node.parent.children.map(
@@ -79,7 +80,7 @@ export const inheritanceCalculation = (node: Node) => {
             sharePartnerPercentage = 0.25;
             spouseShare += sharePartnerPercentage * node.money;
           } else {
-            sharePartnerPercentage = 0.25;
+            sharePartnerPercentage = 1/8;
             spouseShare += sharePartnerPercentage * node.money;
           }
           if (

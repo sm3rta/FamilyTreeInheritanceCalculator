@@ -5,13 +5,14 @@ import grandparent from "./mockData";
 import { Node } from "./types";
 import AddDeleteNodeDialog from "./AddDeleteNodeDialog";
 import CustomNodeElement from "./CustomNodeElement";
-
+import { inheritanceCalculation } from "./inhertitance-calculations"; 
+// import grandparent from './mockData'
 function App() {
   const [selectedNode, setSelectedNode] = useState<Node | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const showDialog = () => setIsDialogOpen(true);
   const hideDialog = () => setIsDialogOpen(false);
-
+  console.log(inheritanceCalculation(grandparent))
   return (
     <>
       <AddDeleteNodeDialog
