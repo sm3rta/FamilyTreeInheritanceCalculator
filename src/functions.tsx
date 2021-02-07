@@ -17,8 +17,7 @@ export function AddNode(parent: Node | null | undefined, child: Node | null | un
 
 export function DeleteNode(parent: Node | null | undefined, childToRemoveName: string | undefined) {
     if (parent !== null && parent !== undefined) {
-        // eslint-disable-next-line
-        parent.children?.map((child, index) => {
+        parent.children?.forEach((child, index) => {
             if (child.name === childToRemoveName) {
                 parent.children?.splice(index, 1);
             }
