@@ -6,14 +6,14 @@ enum Gender {
     FEMALE,
 }
 
-export interface Node {
-    name: string;
-    gender: Gender;
-    living: boolean;
-    money: number;
-    spouse: Node;
-    children: Node[];
-    parent: Node;
+interface Node {
+  name: string;
+  gender: Gender;
+  living: boolean;
+  money: number;
+  spouse?: Node;
+  children?: Node[];
+  parent: Node | null;
 }
 
 function App() {
