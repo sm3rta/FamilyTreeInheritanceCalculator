@@ -5,6 +5,7 @@ export function addNode(parent: Node | null | undefined, child: Node | null | un
 		if (type === "child") {
 			if (parent.children) {
 				parent.children.push(child);
+				if (parent.spouse) parent.spouse.children = parent.children;
 			} else {
 				parent.children = [child];
 			}

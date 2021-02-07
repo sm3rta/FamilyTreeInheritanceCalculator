@@ -17,7 +17,7 @@ const CustomNodeElement = (
 	return (
 		<g
 			onClick={() => {
-				console.log("node", node);
+				console.log("Clicked node", node);
 				setSelectedNode(node);
 				showDialog();
 			}}
