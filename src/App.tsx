@@ -36,9 +36,9 @@ function App() {
 			/>
 			{root && (
 				<Tree
-					// data={root}
+					// data={grandparent}
+					data={root}
 					rootNodeClassName={classes.n}
-					data={grandparent}
 					orientation="vertical"
 					translate={{
 						x: document.body.clientWidth / 2,
