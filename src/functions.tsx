@@ -6,10 +6,12 @@ export function AddNode(parent: Node, child: Node) {
     child.parent = parent;
 }
 
-export function DeleteNode(parent: Node, childToRemoveName: string) {
-    parent.children?.map((child, index) => {
-        if (child.name === childToRemoveName) {
-            parent.children?.splice(index, 1);
-        }
-    });
+export function DeleteNode(parent: Node | null | undefined, childToRemoveName: string | undefined) {
+    if (parent !== null && parent !== undefined) {
+        parent.children?.map((child, index) => {
+            if (child.name === childToRemoveName) {
+                parent.children?.splice(index, 1);
+            }
+        });
+    }
 }
