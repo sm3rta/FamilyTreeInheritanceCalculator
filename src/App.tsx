@@ -11,6 +11,8 @@ interface Node {
   gender: Gender;
   living: boolean;
   money: number;
+  spouse: Node;
+  children: Node[];
 }
 
 function App() {
