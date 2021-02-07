@@ -85,6 +85,7 @@ export const inheritanceCalculation = (node: Node) => {
 							node.parent.spouse.money = fatherShare;
 						}
 					}
+					node.spouse.money = spouseShare;
 				} else {
 					let parentShare = node.parent.money;
 					let spouseShare = node.spouse.money;
@@ -132,19 +133,19 @@ export const inheritanceCalculation = (node: Node) => {
 			if (node.parent) {
 				if (node.parent.spouse) {
 					node.parent.spouse.money += (1 / 6) * node.money;
-                    console.log("person has parents(father and mother) and has not children")
+					console.log("person has parents(father and mother) and has not children");
 				}
 				if (node.spouse.gender === Gender.MALE) {
 					node.spouse.money += 0.5 * node.money;
 					node.parent.money += (1 / 6) * node.money + (node.money - (2 / 6) * 0.5 * node.money);
-                    console.log("person has parents and spouse and has not children")
+					console.log("person has parents and spouse and has not children");
 				} else {
 					node.spouse.money += 0.25 * node.money;
 					node.parent.money += (1 / 6) * node.money + (node.money - (2 / 6) * 0.25 * node.money);
-                    console.log("person has parents and spouse and has not children")
+					console.log("person has parents and spouse and has not children");
 				}
 			}
 		}
 	}
-    node.money = 0;
+	node.money = 0;
 };
