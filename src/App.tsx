@@ -12,7 +12,7 @@ function App() {
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
 	const showDialog = () => setIsDialogOpen(true);
 	const hideDialog = () => setIsDialogOpen(false);
-	console.log(inheritanceCalculation(grandparent));
+	// console.log(inheritanceCalculation(grandparent));
 	const [root, setRoot] = useState<Node | null>(null);
 	return (
 		<>

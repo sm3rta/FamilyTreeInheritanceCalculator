@@ -17,7 +17,7 @@ const CustomNodeElement = (
 	return (
 		<g
 			onClick={() => {
-				console.log("node", node);
+				console.log("Clicked node", node);
 				setSelectedNode(node);
 				showDialog();
 			}}
@@ -29,7 +29,7 @@ const CustomNodeElement = (
 				</text>
 				{spouse && (
 					<text className={classes.text} textAnchor="start" x="30" y="25">
-						{` married to ${spouse.name}`}
+						{`married to ${spouse.name}`}
 					</text>
 				)}
 				<text className={classes.text} textAnchor="start" x="30" y={spouse ? "50" : "25"}>
