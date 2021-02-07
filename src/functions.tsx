@@ -1,5 +1,5 @@
 import React from "react";
-import { Node } from "./App";
+import { Node } from "./types";
 
 export function AddNode(props: Node) {
     let newChild = {
